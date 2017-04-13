@@ -26,8 +26,9 @@ class WechatController extends Controller
             echo $echostr;
             return ;
         }
-        Log::error('微信验证失败');
         echo $echostr;
+        echo '<br />为什么不出东西';
+        Log::error('微信验证失败');
         return ;
 
         $wechat = app('wechat');

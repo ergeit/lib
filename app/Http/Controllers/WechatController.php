@@ -24,10 +24,12 @@ class WechatController extends Controller
 
         if ($this->checkSignature($signature,$timestamp,$nonce)){
             echo $echostr;
+            return ;
         }
-
+        Log::error('微信验证失败');
+        echo $echostr;
         return ;
-        
+
         $wechat = app('wechat');
 
         $wechat->server->setMessageHandler(function($message){

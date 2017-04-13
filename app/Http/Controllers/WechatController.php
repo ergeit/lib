@@ -17,19 +17,6 @@ class WechatController extends Controller
     {
         Log::info('request arrived.'); # 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志
         Log::info($request);
-        $signature = $request->input('signature');
-        $timestamp = $request->input('timestamp');
-        $nonce = $request->input('nonce');
-        $echostr = $request->input('echostr');
-
-        if ($this->checkSignature($signature,$timestamp,$nonce)){
-            echo $echostr;
-            return ;
-        }
-        echo $echostr;
-        echo '<br />为什么不出东西';
-        Log::error('微信验证失败');
-        return ;
 
         $wechat = app('wechat');
 
@@ -41,19 +28,5 @@ class WechatController extends Controller
         $response = $wechat->server->serve();
         return $response;
     }
-
-    private function checkSignature($signature,$timestamp,$nonce)
-    {
-        $token = env('WECHAT_TOKEN');
-        $tmpArr = array($token, $timestamp, $nonce);
-        sort($tmpArr, SORT_STRING);
-        $tmpStr = implode( $tmpArr );
-        $tmpStr = sha1( $tmpStr );
-
-        if( $tmpStr == $signature ){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    
 }

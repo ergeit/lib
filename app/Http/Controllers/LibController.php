@@ -27,6 +27,7 @@ class LibController extends Controller
             $problemnum[$r] = Seat::where('floor',3)->where('room',$r)->where('status',2)->count();
 
         }
+        echo "<script>console.log('" . $openid ."');</script>";
         return view('lib.index',compact('yesnum','nonum','problemnum'));
     }
 

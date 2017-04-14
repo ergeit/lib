@@ -22,6 +22,7 @@ class WechatController extends Controller
         $wechat = app('wechat');
 
         $wechat->server->setMessageHandler(function($message){
+            Log::info($message->MsgType.$message->text);
             switch ($message->MsgType){
                 case 'text':
                     if ($message->text=='空座'){
@@ -39,7 +40,7 @@ class WechatController extends Controller
                     return '虽然不知道你在说什么，不过没关系，你继续。';
 
             }
-            return "欢迎关注 overtrue！";
+            return "欢迎使用 E-lib！";
         });
 
         Log::info('return response.');

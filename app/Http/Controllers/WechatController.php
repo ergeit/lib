@@ -26,13 +26,11 @@ class WechatController extends Controller
                 case 'text':
                     if ($message->Content=='空座'){
 //                        $message->FromUserName openid
-                        $imgurl = asset('lib/img/libbg.jpg');
-                        Log::info($imgurl);
                         $news = array(
                             'title' => '空座查询系统',
                             'description' => '查询空座、预约讨论室等功能',
                             'url' => route('libShow'),
-                            'img' => $imgurl
+                            'image' => asset('lib/img/libbg.jpg')
                         );
                         return new News($news);
                     }

@@ -22,16 +22,17 @@ class WechatController extends Controller
         $wechat = app('wechat');
 
         $wechat->server->setMessageHandler(function($message){
-            Log::info($message->MsgType.$message->Content);
             switch ($message->MsgType){
                 case 'text':
                     if ($message->Content=='空座'){
 //                        $message->FromUserName openid
+                        $imgurl = asset('lib/img/libbg.jpg');
+                        Log::info($imgurl);
                         $news = array(
                             'title' => '空座查询系统',
                             'description' => '查询空座、预约讨论室等功能',
                             'url' => route('libShow'),
-                            'img' => asset('lib/img/libbg.jpg')
+                            'img' => $imgurl
                         );
                         return new News($news);
                     }

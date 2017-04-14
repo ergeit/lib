@@ -17,5 +17,5 @@ Route::get('/', function () {
 
 Route::get('lib','Mobile\LibController@Index');
 Route::any('/wechat', 'WechatController@serve');
-Route::get('lib/show','LibController@index')->middleware('wechat.oauth');
+Route::get('lib/show','LibController@index')->name('libShow')->middleware('wechat.oauth');
 Route::get('lib/detail','LibController@detail')->middleware('wechat.oauth');

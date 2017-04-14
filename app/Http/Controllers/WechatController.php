@@ -22,10 +22,10 @@ class WechatController extends Controller
         $wechat = app('wechat');
 
         $wechat->server->setMessageHandler(function($message){
-            Log::info($message->MsgType.$message->text);
+            Log::info($message->MsgType.$message->Content);
             switch ($message->MsgType){
                 case 'text':
-                    if ($message->text=='空座'){
+                    if ($message->Content=='空座'){
 //                        $message->FromUserName openid
                         $news = array(
                             'title' => '空座查询系统',

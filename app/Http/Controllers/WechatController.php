@@ -30,7 +30,8 @@ class WechatController extends Controller
                             'title' => '空座查询系统',
                             'description' => '查询空座、预约讨论室等功能',
                             'url' => route('libShow'),
-                            'image' => asset('lib/img/libbg.jpg')
+                            'image' => asset('lib/img/libbg.jpg'),
+                            'picurl' => asset('lib/img/libbg.jpg')
                         );
                         return new News($news);
                     }
